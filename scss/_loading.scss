@@ -1,0 +1,48 @@
+.loading-page {
+  background: #f9f9f9;
+  width: 375px;
+  height: 600px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .counter {
+    text-align: center;
+  }
+
+    p {
+      font-size: 40px;
+      font-weight: 100;
+      color: #222222;
+    }
+
+    h1 {
+      color: #222222;
+      font-size: 60px;
+      margin-top: -10px;
+    }
+
+    hr {
+      background: #222222;
+      border: none;
+      height: 1px;
+    }
+
+  .counter {
+    position: relative;
+    width: 200px;
+  }
+
+    h1.abs {
+      position: absolute;
+      top: 0;
+      width: 100%;
+      }
+
+    .color {
+      width: 0px;
+      overflow: hidden;
+      color: #f9f9f9;
+    }
+
+}

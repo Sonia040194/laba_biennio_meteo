@@ -1,0 +1,188 @@
+body {
+  background-color: #e9e9e9; }
+
+html, body {
+  height: 100%; }
+
+section {
+  display: none;
+  height: 100%; }
+
+#weather {
+  font-family: 'Roboto Slab', serif; }
+  #weather h1, #weather h2 {
+    text-align: center; }
+  #weather > .condition .icon i.wi {
+    font-size: 10em; }
+  #weather .condition .content {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    border-radius: 3px;
+    padding: 20px;
+    margin-bottom: 20px;
+    background-color: #f6f6f6; }
+    #weather .condition .content:after {
+      content: "";
+      display: table;
+      clear: both; }
+    #weather .condition .content .value {
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center;
+      color: #9d9d9d;
+      display: inline;
+      font-size: 20px; }
+    #weather .condition .content label {
+      display: inline;
+      text-transform: uppercase;
+      letter-spacing: 3px; }
+    #weather .condition .content .icon label, #weather .condition .content .city label, #weather .condition .content .date label {
+      display: none; }
+    #weather .condition .content .date .value {
+      font-size: 1.7em;
+      font-weight: bold; }
+    #weather .condition .content .city .value {
+      font-size: 40px;
+      font-weight: bold; }
+    #weather .condition .content .icon {
+      padding: 20px; }
+  #weather .condition .icon {
+    margin-bottom: 20px; }
+    #weather .condition .icon label {
+      display: none; }
+    #weather .condition .icon i.wi {
+      color: white;
+      font-size: 4em; }
+  #weather .row > .condition .icon {
+    margin-bottom: 40px; }
+    #weather .row > .condition .icon i.wi {
+      font-size: 8em;
+      color: #838383; }
+  #weather #forecast {
+    color: #838383;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center; }
+    #weather #forecast label {
+      display: none; }
+    #weather #forecast .city, #weather #forecast .wind, #weather #forecast .clouds, #weather #forecast .temp, #weather #forecast .humidity {
+      display: none; }
+
+header {
+  max-width: 375px;
+  max-height: 600px;
+  background: #1d1f20;
+  height: 30px;
+  line-height: 60px;
+  position: absolute; }
+  header .hamburger {
+    background: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    line-height: 25px;
+    color: #222222;
+    border: 0;
+    font-size: 1.4em;
+    font-weight: bold;
+    cursor: pointer;
+    outline: none;
+    z-index: 10000000000000; }
+  header .cross {
+    background: none;
+    position: absolute;
+    top: 0px;
+    left: 0;
+    padding: 0px 0px 0px 5px;
+    color: #222222;
+    border: 0;
+    font-size: 3em;
+    line-height: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    outline: none;
+    z-index: 10000000000000; }
+
+.menu {
+  z-index: 1000000;
+  font-weight: bold;
+  font-size: 0.8em;
+  width: 185px;
+  height: 600px;
+  background: #f4f4f4;
+  position: absolute;
+  text-align: left; }
+  .menu ul {
+    margin-top: 20px;
+    padding: 0;
+    list-style-type: none;
+    list-style-image: none; }
+  .menu li {
+    display: block;
+    padding: 15px 0 15px 0;
+    border-bottom: #f9f9f9 1px solid;
+    margin-left: 50px;
+    margin-right: 50px; }
+  .menu li:hover {
+    display: block;
+    background: #181818;
+    padding: 15px 0 15px 0;
+    border-bottom: #1d1f20 1px solid; }
+  .menu ul li a {
+    text-decoration: none;
+    margin: 0px;
+    color: #222222; }
+  .menu ul li a:hover {
+    color: #000000;
+    text-decoration: none; }
+  .menu a {
+    text-decoration: none;
+    color: #222222; }
+  .menu a:hover {
+    text-decoration: none;
+    color: white; }
+
+.glyphicon-home {
+  color: white;
+  font-size: 1.5em;
+  margin-top: 5px;
+  margin: 0 auto; }
+
+.loading-page {
+  background: #f9f9f9;
+  width: 375px;
+  height: 600px;
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+  .loading-page .counter {
+    text-align: center; }
+  .loading-page p {
+    font-size: 40px;
+    font-weight: 100;
+    color: #222222; }
+  .loading-page h1 {
+    color: #222222;
+    font-size: 60px;
+    margin-top: -10px; }
+  .loading-page hr {
+    background: #222222;
+    border: none;
+    height: 1px; }
+  .loading-page .counter {
+    position: relative;
+    width: 200px; }
+  .loading-page h1.abs {
+    position: absolute;
+    top: 0;
+    width: 100%; }
+  .loading-page .color {
+    width: 0px;
+    overflow: hidden;
+    color: #f9f9f9; }
+
+/*# sourceMappingURL=style.css.map */

@@ -1,0 +1,101 @@
+header{
+  max-width: 375px;
+  max-height: 600px;
+	background:#1d1f20;
+	height:30px;
+	line-height:60px;
+  position: absolute;
+
+  .hamburger{
+    background:none;
+    position:absolute;
+    top:0;
+    left:0;
+    line-height:25px;
+    color:#222222;
+    border:0;
+    font-size:1.4em;
+    font-weight:bold;
+    cursor:pointer;
+    outline:none;
+    z-index:10000000000000;
+  }
+
+  .cross{
+    background:none;
+    position:absolute;
+    top:0px;
+    left:0;
+    padding:0px 0px 0px 5px;
+    color:#222222;
+    border:0;
+    font-size:3em;
+    line-height:40px;
+    font-weight:bold;
+    cursor:pointer;
+    outline:none;
+    z-index:10000000000000;
+  }
+}
+
+
+.menu{
+  z-index:1000000;
+  font-weight:bold;
+  font-size:0.8em;
+  width:185px;
+  height: 600px;
+  background:#f4f4f4;
+  position:absolute;
+  text-align:left;
+
+  ul {
+    margin-top: 20px;
+    padding: 0;
+    list-style-type: none;
+    list-style-image: none;
+  }
+
+  li {
+    display: block;
+    padding:15px 0 15px 0;
+    border-bottom:#f9f9f9 1px solid;
+    margin-left: 50px;
+    margin-right: 50px;
+  }
+
+  li:hover{
+    display: block;
+    background:#181818;
+    padding:15px 0 15px 0;
+    border-bottom:#1d1f20 1px solid;
+  }
+
+  ul li a {
+    text-decoration:none;
+    margin: 0px;
+    color:#222222;
+  }
+
+  ul li a:hover {
+    color: #000000;
+    text-decoration:none;
+  }
+
+  a{
+    text-decoration:none;
+    color:#222222;
+  }
+
+  a:hover{
+    text-decoration:none;
+    color:white;
+  }
+}
+
+.glyphicon-home{
+  color:white;
+  font-size:1.5em;
+  margin-top:5px;
+  margin:0 auto;
+}
