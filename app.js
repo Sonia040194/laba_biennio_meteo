@@ -1,37 +1,10 @@
-/*--------------*/
-/*---LOADING----*/
-/*--------------*/
-
-$(document).ready(function() {
-
-  var counter = 0;
-  var c = 0;
-  var i = setInterval(function(){
-      $(".loading-page .counter h1").html(c + "%");
-      $(".loading-page .counter hr").css("width", c + "%");
-      //$(".loading-page .counter").css("background", "linear-gradient(to right, #f60d54 "+ c + "%,#0d0d0d "+ c + "%)");
-
-    /*
-    $(".loading-page .counter h1.color").css("width", c + "%");
-    */
-    counter++;
-    c++;
-
-    if(counter == 101) {
-        clearInterval(i);
-    }
-  }, 50);
-});
-
-
-
-
-/*----------*/
-/*---APP----*/
-/*----------*/
-
-var is_debug = false;
+var is_debug = true;
 var provider = "openweathermap";
+
+
+
+
+// APP ========================================
 
 $(function(){
   showSection("loading")
@@ -52,7 +25,7 @@ function showSection(section){
 
 
 function getPosition(){
-  debug("find position...")
+  debug("finding position...")
   if(is_debug){ // if debug use fake location
     getWeather(45.559394399999995, 10.2037211)
   } else {
@@ -65,10 +38,10 @@ function getPosition(){
 
 
 function getWeather(lat, lng) {
-
   if(is_debug) {
     var data = $.getJSON("./data.json").done(function( data ) {
-      //console.log(data)
+      debug("dati locali")
+      debug(data)
       renderWeather(data)
     })
     return
@@ -79,14 +52,14 @@ function getWeather(lat, lng) {
     var url = "http://api.openweathermap.org/data/2.5/forecast/daily?cnt=7&units=metric&lat="+lat+"&lon="+lng+"&appid=dbbdeadef8050288e718d9ed34cac7df"
     $.getJSON(url)
     .done(function( data ) {
-      //console.log(data)
+      //debug(data)
       renderWeather(data)
     })
     .fail(function() {
-      console.log( "error" );
+      debug( "error" );
     })
     .always(function() {
-      console.log( "complete" );
+      debug( "complete" );
     });
   }
   if(provider=="simpleweather") {
@@ -107,22 +80,22 @@ function getWeather(lat, lng) {
     var url = "https://api.darksky.net/forecast/00c7658658103952f0566b7c8d854765/"+lat+","+lng
     $.getJSON(url)
     .done(function( data ) {
-      console.log(data)
+      debug(data)
     })
     $.getJSON(url, function(data) {
-       console.log(data);
+       debug(data);
        //$('#weather').html('and the temperature is: ' + data.currently.temperature);
      });
   }
 }
 
 function renderWeather(data){
-  //console.log(data)
+  //debug(data)
   showSection("weather")
   /* rendershowTemp("temp")*/
   if(data){
     for(var i in data.list) {
-      var element = $(".row > .condition")
+      var element = $(".row .condition")
       element.find(".city .value").text(data.city.name)
       if(i!=0) element = element.clone().appendTo( "#forecast" ); // duplicate condition
       condition = data.list[i]
@@ -141,8 +114,8 @@ function renderWeather(data){
       element.find(".eve .value").text(condition.temp.eve + " °C ")
       element.find(".night .value").text(condition.temp.night + " °C ")
     }
-    $(".row > .condition").addClass("col-md-12")
-    $("#weather #forecast > .condition .icon").addClass("col-md-12 col-md-offset-0")
+    $(".row .condition").addClass("col-md-12")
+    $("#weather #forecast  .condition .icon").addClass("col-md-12 col-md-offset-0")
   } else {
     alert("sorry, no weather info!")
   }
@@ -158,7 +131,7 @@ function rendershowTemp(temp){
   if(hours >= 20) moment = "eve"
   if(hours >= 22) moment = "night"
   var showTemp = element.find(".showTemp .value").text(condition.temp.+"moment")
-  console.log(showTemp)
+  debug(showTemp)
 }
 */
 
@@ -179,7 +152,7 @@ function rendershowTemp(temp){
   if (icon = snow) icon= "wi-day-snow"
   if (icon = eclipse) icon= "wi-solar-eclipse"
   var renderhaivogliadi = element.find("per avere il" +"" +"a" + "" + dovrai aspettare + "" + "giorni").text(condition.ico.+"icon")
-  console.log(ico)
+  debug(ico)
 }
 */
 
