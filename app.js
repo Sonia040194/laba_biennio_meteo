@@ -1,11 +1,8 @@
 var is_debug = true;
-var provider = "openweathermap";
-
-
+var provider = "local";
 
 
 // APP ========================================
-
 $(function(){
   showSection("loading")
   init();
@@ -13,7 +10,6 @@ $(function(){
 
 
 function init(){
-  //alert("ciao")
   getPosition()
 }
 
@@ -22,6 +18,8 @@ function showSection(section){
   $("section").hide()
   $("#"+section).show()
 }
+
+
 
 
 function getPosition(){
@@ -38,16 +36,15 @@ function getPosition(){
 
 
 function getWeather(lat, lng) {
-  if(is_debug) {
+  debug("getting weather from "+provider+" of lat:" + lat+", lng: "+lng)
+
+  if(provider=="local") {
     var data = $.getJSON("./data.json").done(function( data ) {
-      debug("dati locali")
       debug(data)
       renderWeather(data)
     })
-    return
   }
 
-  debug("getting weather from "+provider+" of lat:" + lat+", lng: "+lng)
   if(provider=="openweathermap") {
     var url = "http://api.openweathermap.org/data/2.5/forecast/daily?cnt=7&units=metric&lat="+lat+"&lon="+lng+"&appid=dbbdeadef8050288e718d9ed34cac7df"
     $.getJSON(url)
@@ -89,6 +86,7 @@ function getWeather(lat, lng) {
   }
 }
 
+
 function renderWeather(data){
   //debug(data)
   showSection("weather")
@@ -121,40 +119,6 @@ function renderWeather(data){
   }
 }
 
-/*
-function rendershowTemp(temp){
-  var date = new Date();
-  var hours = date.getHours();
-  var moment = "night";
-  if(hours >= 7) moment = "morn"
-  if(hours >= 12) moment = "day"
-  if(hours >= 20) moment = "eve"
-  if(hours >= 22) moment = "night"
-  var showTemp = element.find(".showTemp .value").text(condition.temp.+"moment")
-  debug(showTemp)
-}
-*/
-
-
-/*
-  renderhaivogliadi("ico")
-  function renderhaivogliadi(ico){
-  var sunny = ["wi-day-sunny", "wi-day-sunny-overcast", "wi-hot", "wi-day-light-wind"];
-  var cloudy = ["wi-day-cloudy", "wi-day-cloudy-gusts", "wi-day-cloudy-windy", "wi-day-fog", "wi-day-windy", "wi-day-cloudy-high"];
-  var rain = ["wi-day-hail", "wi-day-haze", "wi-day-rain", "wi-day-rain-mix", "wi-day-rain-wind", "wi-day-showers", "wi-day-sleet", "wi-day-sprinkle"];
-  var thunderstorm = ["wi-day-lightning", "wi-day-sleet-storm", "wi-day-snow-thunderstorm", "wi-day-storm-showers", "wi-day-thunderstorm"];
-  var snow = ["wi-day-snow", "wi-day-snow-wind"];
-  var eclipse = ["wi-solar-eclipse"];
-  if (icon = sunny) icon= "wi-day-sunny"
-  if (icon = cloudy) icon= "wi-day-cloudy"
-  if (icon = rain) icon= "wi-day-rain"
-  if (icon = thunderstorm) icon= "wi-day-thunderstorm"
-  if (icon = snow) icon= "wi-day-snow"
-  if (icon = eclipse) icon= "wi-solar-eclipse"
-  var renderhaivogliadi = element.find("per avere il" +"" +"a" + "" + dovrai aspettare + "" + "giorni").text(condition.ico.+"icon")
-  debug(ico)
-}
-*/
 
 function debug(obj){
   console.log(obj)
