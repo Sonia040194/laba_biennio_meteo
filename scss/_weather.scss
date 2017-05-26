@@ -1,6 +1,13 @@
-#weather {
-  font-family: 'Roboto Slab', serif;
 
+@font-face {
+  font-family: 'FuturaBT-LightItalic';
+  src: url('FuturaBT-LightItalic.eot') format('embedded-opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+#weather {
+  font-family: 'FuturaBT-LightItalic', sans-serif;
   h1, h2 {
     text-align: center;
   }
@@ -12,35 +19,38 @@
 
   .condition { // generic condition
     @include debug;
+    padding: 0 !important;
     .content {
       @include centered;
       @include debug;
       @include clearfix;
       @include border-radius(3px);
-      padding: $spacer;
       margin-bottom: $spacer;
-      background-color: $color_background_2nd;
+      background-color: $color1;
       .value{
         @include centered;
-        color: darken($color_background_1st, 30);
+        color: $color2;
         display: inline;
+        font-weight: lighter;
 
       }
       label{
         display: inline;
-        text-transform: uppercase;
-        letter-spacing: 3px;
+        color: $color2;
+        font-weight: lighter;
       }
-      .icon label, .city label, .date label, .temp label {
+      .icon label, .city label, .date label, .description label, .temp label {
         display: none;
       }
       .date .value{
         font-size: 1.7em;
         font-weight: bold;
+        font-weight: lighter;
       }
       .city .value{
         font-size: 40px;
         font-weight: bold;
+        font-weight: lighter;
       }
       .icon {
         padding: 20px;
@@ -53,7 +63,7 @@
         display: none;
       }
       i.wi {
-        color: $color_lighter;
+        color: $color2;
         font-size: 4em;
       }
     }
@@ -61,16 +71,14 @@
       text-align: left;
       display: inline-flex;
       margin-left: -20em;
+      font-weight: lighter;
     }
     .showTemp{
       margin-left: 15em;
       text-align: left;
       position: absolute;
       margin-top: -50px;
-    }
-    .date, .city {
-      text-transform: uppercase;
-      letter-spacing: 3px;
+      font-weight: lighter;
     }
   }
 
@@ -82,32 +90,36 @@
       padding-bottom: 0px;
      i.wi {
        font-size: 8em;
-       color: $color_darker;
+       color: $color2;
      }
     }
-    .wind, .clouds, .date, .description, .humidity,  {
+    .wind, .clouds, .humidity,  {
       display: none;
     }
     .value{
       font-size: $font_size_normal;
+      font-weight: lighter;
     }
+
   }
 
 
 
   #forecast {
-    color: $color_darker;
+    color: $color2;
     @include centered;
     label {
       display: none;
     }
-    .city, .wind, .clouds, .temp, .humidity,  {
+    .city, .wind, .clouds, .temp, .humidity {
+      display: none;
+    }
+    #section1 {
       display: none;
     }
   }
   .description {
-    text-transform: uppercase;
     font-size: $font_size_normal/2;
-    letter-spacing: 3px;
+    font-weight: lighter;
   }
 }

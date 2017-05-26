@@ -3,7 +3,8 @@ $is_debug: false;
 $spacer: 20px;
 $font_size_normal: 20px;
 
-$color1: #e9e9e9;
+$color1: #111;
+$color2: #fafafa;
 $color_lightest: lighten($color1,80%);
 $color_lighter: lighten($color1,40%);
 $color_darker: darken($color1,40%);
@@ -14,5 +15,3 @@ $color_background_2nd: lighten($color_background_1st,5);
 @import 'mixin';
 @import 'layout';
 @import 'weather';
-@import 'hamburgermenu';
-@import 'loading';

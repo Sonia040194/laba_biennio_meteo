@@ -24,33 +24,13 @@ $(document).ready(function() {
 });
 
 
-/*-----------*/
-/*---MENU----*/
-/*-----------*/
-
-$( ".cross" ).hide();
-$( ".menu" ).hide();
-$( ".hamburger" ).click(function() {
-$( ".menu" ).slideToggle( "slow", function() {
-$( ".hamburger" ).hide();
-$( ".cross" ).show();
-});
-});
-
-$( ".cross" ).click(function() {
-$( ".menu" ).slideToggle( "slow", function() {
-$( ".cross" ).hide();
-$( ".hamburger" ).show();
-});
-});
-
 
 
 /*----------*/
 /*---APP----*/
 /*----------*/
 
-var is_debug = true;
+var is_debug = false;
 var provider = "openweathermap";
 
 $(function(){
@@ -85,6 +65,15 @@ function getPosition(){
 
 
 function getWeather(lat, lng) {
+
+  if(is_debug) {
+    var data = $.getJSON("./data.json").done(function( data ) {
+      //console.log(data)
+      renderWeather(data)
+    })
+    return
+  }
+
   debug("getting weather from "+provider+" of lat:" + lat+", lng: "+lng)
   if(provider=="openweathermap") {
     var url = "http://api.openweathermap.org/data/2.5/forecast/daily?cnt=7&units=metric&lat="+lat+"&lon="+lng+"&appid=dbbdeadef8050288e718d9ed34cac7df"
@@ -128,12 +117,12 @@ function getWeather(lat, lng) {
 }
 
 function renderWeather(data){
-  console.log(data)
+  //console.log(data)
   showSection("weather")
-  renderBackground()
+  /* rendershowTemp("temp")*/
   if(data){
     for(var i in data.list) {
-      var element = $("#weather > .row > .condition")
+      var element = $(".row > .condition")
       element.find(".city .value").text(data.city.name)
       if(i!=0) element = element.clone().appendTo( "#forecast" ); // duplicate condition
       condition = data.list[i]
@@ -141,22 +130,26 @@ function renderWeather(data){
       day = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"][date.getDay()]
       element.find(".icon i").addClass("wi-owm-"+condition.weather[0].id)
       element.find(".date .value").text(day)
-      element.find(".temp .min .value").text(condition.temp.min+" | ")
-      element.find(".temp .max .value").text(" | "+condition.temp.max)
+      element.find(".temp .min .value").text(condition.temp.min +" °C - ") .unit="Celsius"
+      element.find(".temp .max .value").text(condition.temp.max + " °C ")
       element.find(".wind .value").text(condition.speed+"ms")
       element.find(".humidity .value").text(condition.humidity+"%")
       element.find(".clouds .value").text(condition.clouds+"%")
       element.find(".description .value").text(condition.weather[0].description)
+      element.find(".morn .value").text(condition.temp.morn + " °C ")
+      element.find(".day .value").text(condition.temp.day + " °C ")
+      element.find(".eve .value").text(condition.temp.eve + " °C ")
+      element.find(".night .value").text(condition.temp.night + " °C ")
     }
-    $("#weather > .row > .condition").addClass("col-md-4 col-md-offset-4")
-    $("#weather #forecast > .condition").addClass("col-md-2 col-sm-4")
+    $(".row > .condition").addClass("col-md-12")
+    $("#weather #forecast > .condition .icon").addClass("col-md-12 col-md-offset-0")
   } else {
     alert("sorry, no weather info!")
   }
 }
 
-
-function renderBackground(){
+/*
+function rendershowTemp(temp){
   var date = new Date();
   var hours = date.getHours();
   var moment = "night";
@@ -164,11 +157,31 @@ function renderBackground(){
   if(hours >= 12) moment = "day"
   if(hours >= 20) moment = "eve"
   if(hours >= 22) moment = "night"
-  var background_image = "backogroun-"+moment+".png"
-  $("body").css("background-image", "url('"+background_image+"')")
-  console.log(background_image)
+  var showTemp = element.find(".showTemp .value").text(condition.temp.+"moment")
+  console.log(showTemp)
 }
+*/
 
+
+/*
+  renderhaivogliadi("ico")
+  function renderhaivogliadi(ico){
+  var sunny = ["wi-day-sunny", "wi-day-sunny-overcast", "wi-hot", "wi-day-light-wind"];
+  var cloudy = ["wi-day-cloudy", "wi-day-cloudy-gusts", "wi-day-cloudy-windy", "wi-day-fog", "wi-day-windy", "wi-day-cloudy-high"];
+  var rain = ["wi-day-hail", "wi-day-haze", "wi-day-rain", "wi-day-rain-mix", "wi-day-rain-wind", "wi-day-showers", "wi-day-sleet", "wi-day-sprinkle"];
+  var thunderstorm = ["wi-day-lightning", "wi-day-sleet-storm", "wi-day-snow-thunderstorm", "wi-day-storm-showers", "wi-day-thunderstorm"];
+  var snow = ["wi-day-snow", "wi-day-snow-wind"];
+  var eclipse = ["wi-solar-eclipse"];
+  if (icon = sunny) icon= "wi-day-sunny"
+  if (icon = cloudy) icon= "wi-day-cloudy"
+  if (icon = rain) icon= "wi-day-rain"
+  if (icon = thunderstorm) icon= "wi-day-thunderstorm"
+  if (icon = snow) icon= "wi-day-snow"
+  if (icon = eclipse) icon= "wi-solar-eclipse"
+  var renderhaivogliadi = element.find("per avere il" +"" +"a" + "" + dovrai aspettare + "" + "giorni").text(condition.ico.+"icon")
+  console.log(ico)
+}
+*/
 
 function debug(obj){
   console.log(obj)
